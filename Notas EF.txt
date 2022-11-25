@@ -1,0 +1,17 @@
+1. Creamos el proyecto minimal API para este ejemplo.
+
+2. Agregar las librerías que necesitamos para trabajar con EF
+   2.1 Entramos al protal de nuget. https://www.nuget.org/
+   2.2 Barra búsqueda, Entity Framework, Microsoft.EntityFrameworkCore, en la pestaña .NET Cli, pestaña Versions, seleccionamos la versión final y 
+       copiamos el comanndo mostrado.
+   2.3 Menú herramientas, linea de comandos power shell. Acá pegamos todas las rutas copiadas y ejecutamos.
+   2.4 Para este ejemplo, usamos este paquete que nos ayudará a crear una base de datos en memoria y probar el modelo que estamos 
+       creando, Microsoft.EntityFrameworkCore.InMemory
+   2.5 Librería para conectarnos específicamente al motor con el cual estamos trabajando. 
+       Npgsql.EntityFrameworkCore.PostgreSQL
+
+3. Creación de los modelos. Creación de clases que terminan siendo tablas en la base de datos.
+   3.1 Crear carpeta Models para guardar nuestros modelos. Tipos de archivo: .cs, clases de c#.
+   3.2 Identificamos las sesiones colocando un namespace y dentro la clase.
+   3.3 Agregar las propiedades de las clase
+

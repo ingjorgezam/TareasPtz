@@ -1,4 +1,10 @@
+using proyectoef;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<TareasContext>(p => p.UseInMemoryDatabase("TareasDB"));
 
 // Add services to the container.
 
@@ -22,6 +28,12 @@ app.MapGet("/weatherforecast", () =>
         ))
         .ToArray();
     return forecast;
+});
+
+app.MapGet("/dbconexion", async ([FromServices] TareasContext dbContext) =>
+{
+    dbContext.Database.EnsureCreated();
+    return Results.Ok("Base de datos en Memoria " + dbContext.Database.IsInMemory());
 });
 
 app.Run();

@@ -13,5 +13,45 @@
 3. Creación de los modelos. Creación de clases que terminan siendo tablas en la base de datos.
    3.1 Crear carpeta Models para guardar nuestros modelos. Tipos de archivo: .cs, clases de c#.
    3.2 Identificamos las sesiones colocando un namespace y dentro la clase.
-   3.3 Agregar las propiedades de las clase
+   3.3 Agregar las propiedades de las clases
+
+4. Configuración de EF. Relación entre los modelos creados y la conexión a la base de datos.
+   4.1 EF requiere crear un CONTEXTO donde va toda la relación de los modelos para poder transformarlos en colecciones que 
+       se van a representar en la base de datos.
+       4.1.1 SE CREA LA CLASE QUE REPRESENTE ESE CONTEXTO.
+       4.1.2 Se puede crear un carpeta para crear ese contexto o se deja en la raiz de la solución.
+       4.1.3 NombreDelaAplicacionContext.cs
+       4.1.4 Se coloca el nombre del namespace (el mismo que se colocó en los modelos pero antes del . namespace.)
+       4.1.5 Se crea la clase heredando de DbContext (contiene todos los componentes que necesita la clase que estamos 
+       creaando, para configurar la base de datos).  
+       Para usar DbContext, Using Microsoft.EntityFrameworkCore
+       4.1.6 Creación de los dbsets que representarán a las tablas en la base de datos
+       4.1.7 Creación del método base del constructor, 
+
+       LOS MODELOS POR CONVENCIÓN SE LLAMAN EN SINGULAR
+
+5. IMPLEMENTACIÓN DE LOS DATA ANNOTATIONS (atributos, para la configuración de las propiedades de las clases que al final
+   se convertirán en campos de la tabla). Estos data annotaions se hacen en cada modelo. Estos atributos se colocan antes 
+   del nombre del campo en el modelo. Se necesita la librería  System.ComponentModel.DataAnnotations;
+
+   https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/data-annotations
+
+   5.1 La config interna de EF, permite detectar cuál es el Id de la tabla, 1: al final lleva "Id" y porque el atributo lleva
+       el mismo nombre de la clase.
+
+6. Conectarnos a una base de datos en memoria (verifica que todo lo que hemos hecho funciona correctamente)
+   6.1 Archivo program.cs (contiene toda a información general de la aplicación).
+   6.2 En este archivo vamos a configurar EF, antes de que construya la app (var app = builder.Build())
+       builder.Services.AddDbContext<TareasContext> (agregamos el namespace donde está creado TareasContext)
+   6.3  using Microsoft.EntityFrameworkCore;
+        builder.Services.AddDbContext<TareasContext>(p => p.UseInMemoryDatabase("TareasDB"));
+
+7. Mapeo, creación de un endpoint
+   app.MapGet("/dbconexion", async ([FromServices] TareasContext dbContext) =>
+   {
+    dbContext.Database.EnsureCreated();
+    return Results.Ok("Base de datos en Memoria " + dbContext.Database.IsInMemory());
+   });
+
+8. Corremos el proyecto
 

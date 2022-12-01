@@ -4,7 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<TareasContext>(p => p.UseInMemoryDatabase("TareasDB"));
+//Configuración para base de datos en memoria.
+//Si todo sale exitosio quiere decir que la config de los modelos y Ef está correcta
+//builder.Services.AddDbContext<TareasContext>(p => p.UseInMemoryDatabase("TareasDB"));
+
+//Conectar Ef a un base de datos real a Postgresql
+builder.Services.AddNpgsql<TareasContext>(builder.Configuration.GetConnectionString("cnTareas"));
 
 // Add services to the container.
 

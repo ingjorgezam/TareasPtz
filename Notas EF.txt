@@ -52,6 +52,17 @@
     dbContext.Database.EnsureCreated();
     return Results.Ok("Base de datos en Memoria " + dbContext.Database.IsInMemory());
    });
+   7.1 Corremos el proyecto
 
-8. Corremos el proyecto
+**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**
 
+8. //Conectar Ef a un base de datos real a Postgresql, en program.cs 
+    builder.Services.AddNpgsql<TareasContext>("Server=localhost;Password=12345678;Database=TareasDb;User Id=postgres");
+
+9. Configturar la ruta de conexión a la base de datos en un archivo de configuración
+   9.1 en el archivo appsetings.json (configuraciones que se ejecutan en cualquier ambiente)
+   9.2 Después de "AllowedHosts": "*", creamos los strings de conexiones que necesitemos
+                            "ConnectionStrings": {
+                            "nombreDeLaConexion": "Server=localhost;Password=12345678;Database=TareasDb;User,Id=postgres"
+                            }
+   9.3 En program cs.en builder.Services.AddNpgsql<TareasContext>(builder.Configuration.GetConecctionString("nombreDeLaConexion"))

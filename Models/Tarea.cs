@@ -6,14 +6,14 @@ namespace proyectoef.Models
     //Cada Tarea va a tener asignada una categoria
     public class Tarea
     {
-        [Key]
+        //[Key]
         public Guid TareaId { get; set; }
 
         //Relación de la tarea con la categoria
-        [ForeignKey("CategoriaId")] // DataAnnotations.Schema, dentro de los ("nombreDeLaRelación")
+        //[ForeignKey("CategoriaId")] // DataAnnotations.Schema, dentro de los ("nombreDeLaRelación")
         public Guid CategoriaId { set; get; }
-        [Required]
-        [MaxLength(200)]
+        //[Required]
+        //[MaxLength(200)]
 
 
         public string Titulo { set; get; }
@@ -24,7 +24,7 @@ namespace proyectoef.Models
         //Propiedad para relacionarla con Categoria
         public virtual Categoria Categoria { set; get; }
 
-        [NotMapped] //Omite esta propiedad al momento de hacer el mapeo del conexto a la base de datos.
+       // [NotMapped] //Omite esta propiedad al momento de hacer el mapeo del conexto a la base de datos.
                     //No se crea este campo en la base de datos.
         public string Resumen { set; get; }
 

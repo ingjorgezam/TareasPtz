@@ -66,3 +66,17 @@
                             "nombreDeLaConexion": "Server=localhost;Password=12345678;Database=TareasDb;User,Id=postgres"
                             }
    9.3 En program cs.en builder.Services.AddNpgsql<TareasContext>(builder.Configuration.GetConecctionString("nombreDeLaConexion"))
+
+
+
+**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**
+**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**
+-- FLUENT API
+   Forma avanzada de configurar los modelos de ef sin utilizar atributos o dataanotations, diseñando con aspectos avanzados.
+   NO combinar dataanotacions con FluentApi
+
+10 en el conexto (Tareascontext):
+   10.1 Se sobreescribe la lógica el método interno DbContext (OnModelCreating) que es el que se invoca cuando se está 
+        diseñando la BD, de acuerdo a neustra necesidad.
+   10.2 Revisamos la implementación
+        

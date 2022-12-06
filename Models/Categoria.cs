@@ -4,12 +4,12 @@ namespace proyectoef.Models
 {
     public class Categoria
     {
-        [Key] //Cñave principal
+        //[Key] //Cñave principal
         public Guid CategoriaId { get; set; }
 
 
-        [Required] //Requerido
-        [MaxLength(150)] //Espacio máximo de este campo.
+        //[Required] //Requerido
+        //[MaxLength(150)] //Espacio máximo de este campo.
         
         public string Nombre { get; set; }
         
